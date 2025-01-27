@@ -29,7 +29,7 @@
     <div id="map"></div>
 
     <script>
-        var map = L.map('map').setView([51.505, -0.09], 13);
+        var map = L.map('map').setView([40.856, 14.246], 13);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
          maxZoom: 19,
@@ -37,6 +37,64 @@
           }).addTo(map);
 
     </script>
+
+    <script>
+        var marker = L.marker([40.856, 14.246]).addTo(map);
+    </script>
+
+    <script>
+        var circle = L.circle([40.856, 14.246], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+}).addTo(map);
+    </script>
+
+    <script>
+        var polygon = L.polygon([
+    [40.856, 14.246],
+    [40.845, 14.240],
+    [40.865, 14.235]
+]).addTo(map);
+    </script>
+
+    <script>
+        marker.bindPopup("<b>Hello world!</b><br>I am a popup that locates Naples, Italy.").openPopup();
+circle.bindPopup("I am round.");
+polygon.bindPopup("I am pointy.");
+    </script>
+
+    <script>
+        var popup = L.popup()
+    .setLatLng([40.865, 14.235])
+    .setContent("I mark the top of this pointy thing.")
+    .openOn(map);
+    </script>
+
+    <script>
+        function onMapClick(e) {
+    alert("You clicked the map at " + e.latlng);
+}
+
+map.on('click', onMapClick);
+    </script>
+
+    <script>
+        var popup = L.popup();
+
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(map);
+}
+
+map.on('click', onMapClick);
+    </script>
+
+
+
 
 </body>
 
